@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/main.css">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 </head>
@@ -24,12 +25,43 @@
 
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto me-lg-4">
-          <li class="nav-item"><a class="nav-link text-body" href="#hero">Home</a></li>
-          <li class="nav-item"><a class="nav-link text-body" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link text-body" href="#skills">Skills</a></li>
-          <li class="nav-item"><a class="nav-link text-body" href="#portfolio">Portfolio</a></li>
-          <li class="nav-item"><a class="nav-link text-body" href="#contact">Contact</a></li>
+          <li class="nav-item">
+            <a class="nav-link text-body" href="#hero">
+              <span class="lang-en">Home</span>
+              <span class="lang-kh d-none">ទំព័រដើម</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-body" href="#about">
+              <span class="lang-en">About</span>
+              <span class="lang-kh d-none">អំពីខ្ញុំ</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-body" href="#skills">
+              <span class="lang-en">Skills</span>
+              <span class="lang-kh d-none">ជំនាញ</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-body" href="#portfolio">
+              <span class="lang-en">Portfolio</span>
+              <span class="lang-kh d-none">ស្នាដៃ</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-body" href="#contact">
+              <span class="lang-en">Contact</span>
+              <span class="lang-kh d-none">ទំនាក់ទំនង</span>
+            </a>
+          </li>
         </ul>
+
+        <button id="lang-toggle"
+          class="btn btn-outline-primary rounded-pill me-2 px-3 fw-bold mt-3 mt-lg-0 d-flex align-items-center gap-2">
+          <img id="lang-img" src="https://flagcdn.com/w40/kh.png" alt="Flag" width="20" class="rounded-sm">
+          <span id="lang-label">KH</span>
+        </button>
 
         <button id="theme-toggle" class="btn btn-outline-primary rounded-circle mt-3 mt-lg-0">
           <i id="theme-icon" class="fas fa-moon"></i>
@@ -42,31 +74,49 @@
     <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-7 order-2 order-lg-1 text-center text-lg-start">
-          <h5 class="text-primary fw-bold mb-3">WELCOME TO MY WORLD</h5>
+
+          <h5 class="text-primary fw-bold mb-3">
+            <span class="lang-en">WELCOME TO MY WORLD</span>
+            <span class="lang-kh d-none">សូមស្វាគមន៍មកកាន់ពិភពរបស់ខ្ញុំ</span>
+          </h5>
+
           <h1 class="display-2 fw-bold mb-4">
-            Hi, I'm <span class="text-primary">REAKSMEY</span><br>
-            <span id="typewriter" class="cursor-blink">I'm</span>
+            <span class="lang-en">Hi, I'm <span class="text-primary">REAKSMEY</span></span>
+            <span class="lang-kh d-none">សួស្តី! ខ្ញុំបាទឈ្មោះ <span class="text-primary">រស្មី</span></span>
+            <br>
+            <span id="typewriter" class="cursor-blink"></span>
           </h1>
+
           <p class="lead mb-5 text-secondary pe-lg-5">
-            A Front-End Developer, Designer, and YouTuber dedicated to creating engaging web experiences and meaningful
-            digital content.
+            <span class="lang-en">
+              A Front-End Developer, Designer, and YouTuber dedicated to creating engaging web experiences and
+              meaningful digital content.
+            </span>
+            <span class="lang-kh d-none">
+              ខ្ញុំជាអ្នកអភិវឌ្ឍន៍វេបសាយ (Front-End), អ្នករចនា និងជា YouTuber ដែលខិតខំបង្កើតបទពិសោធន៍ឌីជីថលដ៏ទាក់ទាញ
+              និងមានអត្ថន័យ។
+            </span>
           </p>
-          </p>
+
           <div class="d-flex gap-3 justify-content-center justify-content-lg-start">
             <a href="#portfolio" class="btn btn-primary btn-lg px-4 rounded-pill shadow-lg">
-              My Projects
+              <span class="lang-en">My Projects</span>
+              <span class="lang-kh d-none">គម្រោងរបស់ខ្ញុំ</span>
             </a>
 
             <a href="#contact" class="btn btn-outline-primary btn-lg px-4 rounded-pill">
-              Let's Talk
+              <span class="lang-en">Let's Talk</span>
+              <span class="lang-kh d-none">ពិភាក្សាការងារ</span>
             </a>
           </div>
         </div>
+
         <div class="col-lg-5 order-1 order-lg-2 text-center mb-5 mb-lg-0">
           <div class="img-wrapper">
             <img src="images/home.png" alt="Profile" class="profile-img shadow-lg">
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -80,18 +130,35 @@
             <div
               class="position-absolute bottom-0 start-0 bg-primary text-white p-3 m-3 rounded-3 shadow animate-float">
               <h3 class="fw-bold mb-0">0+</h3>
-              <p class="small mb-0">Years Experience</p>
+              <p class="small mb-0">
+                <span class="lang-en">Years Experience</span>
+                <span class="lang-kh d-none">ឆ្នាំនៃបទពិសោធន៍</span>
+              </p>
             </div>
           </div>
         </div>
 
         <div class="col-lg-7">
-          <h5 class="text-primary fw-bold mb-3">MY BIOGRAPHY</h5>
-          <h2 class="display-5 fw-bold mb-4">Who is REAKSMEY?</h2>
+          <h5 class="text-primary fw-bold mb-3">
+            <span class="lang-en">MY BIOGRAPHY</span>
+            <span class="lang-kh d-none">ជីវប្រវត្តិសង្ខេប</span>
+          </h5>
+          <h2 class="display-5 fw-bold mb-4">
+            <span class="lang-en">Who is REAKSMEY?</span>
+            <span class="lang-kh d-none">តើ រស្មី ជានរណា?</span>
+          </h2>
           <p class="text-secondary mb-4">
-            I am a dedicated Front-End Developer, Designer, and YouTuber based in [Your Location]. I specialize in
-            creating clean, visually appealing designs and interactive web experiences. My goal is to craft digital
-            products and content that not only look amazing but inspire and engage real-world audiences.
+            <span class="lang-en">
+              I am a dedicated Front-End Developer, Designer, and YouTuber based in Phnom Penh. I specialize in
+              creating clean, visually appealing designs and interactive web experiences. My goal is to craft digital
+              products and content that not only look amazing but inspire and engage real-world audiences.
+            </span>
+            <span class="lang-kh d-none">
+              ខ្ញុំគឺជាអ្នកអភិវឌ្ឍន៍វេបសាយ (Front-End) អ្នករចនា និងជា YouTuber ដែលមានមូលដ្ឋាននៅរាជធានីភ្នំពេញ។
+              ខ្ញុំមានជំនាញក្នុងការបង្កើតការរចនាដែលស្អាតប្លែកភ្នែក និងបទពិសោធន៍វេបសាយដែលមានអន្តរកម្ម។
+              គោលដៅរបស់ខ្ញុំគឺបង្កើតផលិតផលឌីជីថល និងមាតិកាដែលមិនត្រឹមតែមើលទៅអស្ចារ្យប៉ុណ្ណោះទេ
+              ប៉ុន្តែថែមទាំងជួយបំផុសគំនិត និងទាក់ទាញអ្នកប្រើប្រាស់ពិតប្រាកដផងដែរ។
+            </span>
           </p>
 
           <div class="row g-4 mb-5">
@@ -101,7 +168,10 @@
                   <i class="fas fa-graduation-cap text-primary"></i>
                 </div>
                 <div>
-                  <h6 class="fw-bold mb-0">Education</h6>
+                  <h6 class="fw-bold mb-0">
+                    <span class="lang-en">Education</span>
+                    <span class="lang-kh d-none">ការសិក្សា</span>
+                  </h6>
                   <p class="small text-secondary mb-0">PNC 2026</p>
                 </div>
               </div>
@@ -112,15 +182,23 @@
                   <i class="fas fa-briefcase text-primary"></i>
                 </div>
                 <div>
-                  <h6 class="fw-bold mb-0">Availability</h6>
-                  <p class="small text-secondary mb-0">Freelance & Full-time</p>
+                  <h6 class="fw-bold mb-0">
+                    <span class="lang-en">Availability</span>
+                    <span class="lang-kh d-none">ស្ថានភាពការងារ</span>
+                  </h6>
+                  <p class="small text-secondary mb-0">
+                    <span class="lang-en">Freelance & Full-time</span>
+                    <span class="lang-kh d-none">ហ្វ្រីលែន និងពេញម៉ោង</span>
+                  </p>
                 </div>
               </div>
             </div>
           </div>
 
           <a href="assets/Reaksmey SAN.pdf" class="btn btn-primary rounded-pill px-4 py-2" download>
-            <i class="fas fa-download me-2"></i>Download Resume
+            <i class="fas fa-download me-2"></i>
+            <span class="lang-en">Download Resume</span>
+            <span class="lang-kh d-none">ទាញយកប្រវត្តិរូប</span>
           </a>
         </div>
       </div>
@@ -131,7 +209,10 @@
     <div class="container py-5">
 
       <div class="text-center mb-5">
-        <h2 class="fw-bold text-body">Technical Expertise</h2>
+        <h2 class="fw-bold text-body">
+          <span class="lang-en">Technical Expertise</span>
+          <span class="lang-kh d-none">ជំនាញបច្ចេកទេស</span>
+        </h2>
         <hr class="mx-auto w-25 border-primary border-3 opacity-100">
       </div>
 
@@ -172,16 +253,30 @@
   <section id="portfolio" class="py-5">
     <div class="container py-5">
       <div class="text-center mb-5">
-        <h5 class="text-primary fw-bold mb-3">MY WORKS</h5>
-        <h2 class="display-5 fw-bold mb-4">Featured Projects</h2>
+        <h5 class="text-primary fw-bold mb-3">
+          <span class="lang-en">MY WORKS</span>
+          <span class="lang-kh d-none">ស្នាដៃរបស់ខ្ញុំ</span>
+        </h5>
+        <h2 class="display-5 fw-bold mb-4">
+          <span class="lang-en">Featured Projects</span>
+          <span class="lang-kh d-none">គម្រោងលេចធ្លោ</span>
+        </h2>
         <hr class="mx-auto w-25 border-primary border-3 opacity-100">
       </div>
 
       <div class="d-flex justify-content-center gap-2 mb-5">
-        <button class="btn btn-primary rounded-pill filter-btn active" data-filter="all">All</button>
-        <button class="btn btn-outline-primary rounded-pill filter-btn" data-filter="web">Web</button>
-        <button class="btn btn-outline-primary rounded-pill filter-btn" data-filter="vlog">Vlogs</button>
-        <button class="btn btn-outline-primary rounded-pill filter-btn" data-filter="design">Design</button>
+        <button class="btn btn-primary rounded-pill filter-btn active" data-filter="all">
+          <span class="lang-en">All</span><span class="lang-kh d-none">ទាំងអស់</span>
+        </button>
+        <button class="btn btn-outline-primary rounded-pill filter-btn" data-filter="web">
+          <span class="lang-en">Web</span><span class="lang-kh d-none">វេបសាយ</span>
+        </button>
+        <button class="btn btn-outline-primary rounded-pill filter-btn" data-filter="vlog">
+          <span class="lang-en">Vlogs</span><span class="lang-kh d-none">វីដេអូ</span>
+        </button>
+        <button class="btn btn-outline-primary rounded-pill filter-btn" data-filter="design">
+          <span class="lang-en">Design</span><span class="lang-kh d-none">រចនា</span>
+        </button>
       </div>
 
       <div class="row g-4" id="portfolio-grid">
@@ -200,7 +295,9 @@
             <div class="card-body p-4">
               <span class="badge bg-primary-subtle text-primary mb-2">Web Development</span>
               <h5 class="card-title fw-bold">Quiz System Website</h5>
-              <p class="card-text text-secondary small">A front-end quiz solution built with html, css, and JavaScript.
+              <p class="card-text text-secondary small">
+                <span class="lang-en">A front-end quiz solution built with HTML, CSS, and JavaScript.</span>
+                <span class="lang-kh d-none">ប្រព័ន្ធប្រលងកម្រងសំណួរដែលបង្កើតឡើងដោយ HTML, CSS និង JavaScript។</span>
               </p>
             </div>
           </div>
@@ -213,14 +310,18 @@
               <div class="project-overlay d-flex align-items-center justify-content-center">
                 <a href="https://www.facebook.com/reel/2579802185738910" target="_blank"
                   class="btn btn-primary rounded-pill px-3">
-                  <i class="fab fa-facebook-f me-2"></i>Watch Now
+                  <i class="fab fa-facebook-f me-2"></i>
+                  <span class="lang-en">Watch Now</span><span class="lang-kh d-none">ទស្សនាឥឡូវនេះ</span>
                 </a>
               </div>
             </div>
             <div class="card-body p-4">
               <span class="badge bg-primary-subtle text-primary mb-2">Facebook</span>
-              <h5 class="card-title fw-bold">Totorial Deploy Website</h5>
-              <p class="card-text text-secondary small">How to deploy localhost website into broswer by Vercel.</p>
+              <h5 class="card-title fw-bold">Tutorial Deploy Website</h5>
+              <p class="card-text text-secondary small">
+                <span class="lang-en">How to deploy localhost website into browser by Vercel.</span>
+                <span class="lang-kh d-none">របៀបដាក់ឲ្យដំណើរការវេបសាយទៅកាន់អ៊ីនធឺណិតតាមរយៈ Vercel។</span>
+              </p>
             </div>
           </div>
         </div>
@@ -239,7 +340,10 @@
             <div class="card-body p-4">
               <span class="badge bg-primary-subtle text-primary mb-2">Web Development</span>
               <h5 class="card-title fw-bold">E-Commerce Website</h5>
-              <p class="card-text text-secondary small">A front-end shopping solution built with html and css.</p>
+              <p class="card-text text-secondary small">
+                <span class="lang-en">A front-end shopping solution built with HTML and CSS.</span>
+                <span class="lang-kh d-none">វេបសាយលក់ទំនិញអនឡាញដែលរចនាឡើងដោយ HTML និង CSS។</span>
+              </p>
             </div>
           </div>
         </div>
@@ -258,7 +362,10 @@
             <div class="card-body p-4">
               <span class="badge bg-primary-subtle text-primary mb-2">Web Development</span>
               <h5 class="card-title fw-bold">Portfolio Website</h5>
-              <p class="card-text text-secondary small">A front-end Portfolio built with html and css.</p>
+              <p class="card-text text-secondary small">
+                <span class="lang-en">A front-end Portfolio built with HTML and CSS.</span>
+                <span class="lang-kh d-none">វេបសាយបង្ហាញពីស្នាដៃផ្ទាល់ខ្លួនដែលរចនាដោយ HTML និង CSS។</span>
+              </p>
             </div>
           </div>
         </div>
@@ -270,45 +377,64 @@
               <div class="project-overlay d-flex align-items-center justify-content-center">
                 <a href="https://www.figma.com/proto/R52bfLyrncb0X8pjoos5BP/Untitled?page-id=0%3A1&node-id=121-215&t=WrHtE03IKI5JQpEd-1"
                   target="_blank" class="btn btn-primary rounded-pill px-3">
-                  <i class="fab fa-figma me-2"></i>View Prototype
+                  <i class="fab fa-figma me-2"></i>
+                  <span class="lang-en">View Prototype</span><span class="lang-kh d-none">មើលគំរូសាកល្បង</span>
                 </a>
               </div>
             </div>
             <div class="card-body p-4">
               <span class="badge bg-info-subtle text-info mb-2">UI/UX Design</span>
               <h5 class="card-title fw-bold">Pet selling Application UI</h5>
-              <p class="card-text">Modern, user-friendly UI design for a pet selling app.</p>
+              <p class="card-text">
+                <span class="lang-en">Modern, user-friendly UI design for a pet selling app.</span>
+                <span class="lang-kh d-none">ការរចនាផ្ទៃកម្មវិធីទូរស័ព្ទសម្រាប់លក់សត្វចិញ្ចឹមដែលមានភាពទាន់សម័យ។</span>
+              </p>
             </div>
           </div>
         </div>
 
-        <div class="text-center mt-5">
-          <button id="see-more-btn" class="btn btn-outline-primary rounded-pill px-4 py-2">
-            See More Projects <i class="fas fa-arrow-right ms-2"></i>
-          </button>
-        </div>
       </div>
+
+      <div class="text-center mt-5">
+        <button id="see-more-btn" class="btn btn-outline-primary rounded-pill px-4 py-2">
+          <span class="lang-en">See More Projects</span><span class="lang-kh d-none">មើលគម្រោងបន្ថែមទៀត</span>
+          <i class="fas fa-arrow-right ms-2"></i>
+        </button>
+      </div>
+    </div>
   </section>
 
   <section id="contact" class="py-5 bg-body-tertiary">
     <div class="container py-5">
       <div class="text-center mb-5">
-        <h5 class="text-primary fw-bold mb-3">GET IN TOUCH</h5>
-        <h2 class="display-5 fw-bold mb-4">Let's Work Together</h2>
+        <h5 class="text-primary fw-bold mb-3">
+          <span class="lang-en">GET IN TOUCH</span>
+          <span class="lang-kh d-none">ទាក់ទងមកកាន់ខ្ញុំ</span>
+        </h5>
+        <h2 class="display-5 fw-bold mb-4">
+          <span class="lang-en">Let's Work Together</span>
+          <span class="lang-kh d-none">មកសហការគ្នាបង្កើតអ្វីដែលអស្ចារ្យ</span>
+        </h2>
         <hr class="mx-auto w-25 border-primary border-3 opacity-100">
       </div>
 
       <div class="row g-5">
         <div class="col-lg-5">
           <div class="card border-0 shadow-sm p-4 h-100">
-            <h4 class="fw-bold mb-4">Contact Information</h4>
+            <h4 class="fw-bold mb-4">
+              <span class="lang-en">Contact Information</span>
+              <span class="lang-kh d-none">ព័ត៌មានទំនាក់ទំនង</span>
+            </h4>
 
             <div class="d-flex align-items-center mb-4">
               <div class="bg-primary-subtle p-3 rounded-3 me-3">
                 <i class="fas fa-envelope text-primary"></i>
               </div>
               <div>
-                <p class="text-secondary mb-0 small">Email Me</p>
+                <p class="text-secondary mb-0 small">
+                  <span class="lang-en">Email Me</span>
+                  <span class="lang-kh d-none">អ៊ីមែល</span>
+                </p>
                 <h6 class="mb-0">hello@reaksmey.com</h6>
               </div>
             </div>
@@ -318,7 +444,10 @@
                 <i class="fas fa-phone text-primary"></i>
               </div>
               <div>
-                <p class="text-secondary mb-0 small">Call Me</p>
+                <p class="text-secondary mb-0 small">
+                  <span class="lang-en">Call Me</span>
+                  <span class="lang-kh d-none">លេខទូរស័ព្ទ</span>
+                </p>
                 <h6 class="mb-0">+855 12 345 678</h6>
               </div>
             </div>
@@ -328,12 +457,22 @@
                 <i class="fas fa-location-dot text-primary"></i>
               </div>
               <div>
-                <p class="text-secondary mb-0 small">Location</p>
-                <h6 class="mb-0">Phnom Penh, Cambodia</h6>
+                <p class="text-secondary mb-0 small">
+                  <span class="lang-en">Location</span>
+                  <span class="lang-kh d-none">ទីតាំង</span>
+                </p>
+                <h6 class="mb-0">
+                  <span class="lang-en">Phnom Penh, Cambodia</span>
+                  <span class="lang-kh d-none">រាជធានីភ្នំពេញ, ប្រទេសកម្ពុជា</span>
+                </h6>
               </div>
             </div>
+
             <div class="follow-journey mt-4 pt-3 border-top">
-              <h6 class="fw-bold mb-3">Follow My Journey</h6>
+              <h6 class="fw-bold mb-3">
+                <span class="lang-en">Follow My Journey</span>
+                <span class="lang-kh d-none">តាមដានសកម្មភាពរបស់ខ្ញុំ</span>
+              </h6>
               <div class="d-flex gap-3 mb-3">
                 <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
                 <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
@@ -349,32 +488,46 @@
             <div class="row g-3">
 
               <div class="col-md-6">
-                <label class="form-label small fw-bold text-body">Full Name</label>
+                <label class="form-label small fw-bold text-body">
+                  <span class="lang-en">Full Name</span>
+                  <span class="lang-kh d-none">ឈ្មោះពេញ</span>
+                </label>
                 <input type="text" class="form-control bg-body text-body border-secondary py-2"
-                  placeholder="Enter Your Name" required>
+                  placeholder="ឈ្មោះរបស់អ្នក" required>
               </div>
 
               <div class="col-md-6">
-                <label class="form-label small fw-bold text-body">Email Address</label>
+                <label class="form-label small fw-bold text-body">
+                  <span class="lang-en">Email Address</span>
+                  <span class="lang-kh d-none">អាសយដ្ឋានអ៊ីមែល</span>
+                </label>
                 <input type="email" class="form-control bg-body text-body border-secondary py-2"
-                  placeholder="Enter Your Email" required>
+                  placeholder="អ៊ីមែលរបស់អ្នក" required>
               </div>
 
               <div class="col-12">
-                <label class="form-label small fw-bold text-body">Subject</label>
+                <label class="form-label small fw-bold text-body">
+                  <span class="lang-en">Subject</span>
+                  <span class="lang-kh d-none">ប្រធានបទ</span>
+                </label>
                 <input type="text" class="form-control bg-body text-body border-secondary py-2"
-                  placeholder="Enter Your Subject">
+                  placeholder="ចំណងជើងនៃសារ">
               </div>
 
               <div class="col-12">
-                <label class="form-label small fw-bold text-body">Message</label>
+                <label class="form-label small fw-bold text-body">
+                  <span class="lang-en">Message</span>
+                  <span class="lang-kh d-none">សាររបស់អ្នក</span>
+                </label>
                 <textarea class="form-control bg-body text-body border-secondary py-2" rows="5"
-                  placeholder="Say Something ..." required></textarea>
+                  placeholder="សរសេរអ្វីមួយនៅទីនេះ..." required></textarea>
               </div>
 
               <div class="col-12 mt-4">
                 <button type="submit" class="btn btn-primary w-100 py-3 rounded-pill fw-bold shadow-lg">
-                  Send Message <i class="fas fa-paper-plane ms-2"></i>
+                  <span class="lang-en">Send Message</span>
+                  <span class="lang-kh d-none">ផ្ញើសារចេញ</span>
+                  <i class="fas fa-paper-plane ms-2"></i>
                 </button>
               </div>
 
@@ -389,28 +542,38 @@
     <div class="container">
       <div class="row gy-5">
 
-        <!-- 1. Brand & Short Description -->
         <div class="col-lg-4 text-center text-lg-start">
           <a class="navbar-brand fs-2 fw-bold text-gradient d-block mb-3" href="#">SMEY.</a>
           <p class="text-secondary">
-            Crafting digital experiences through code, design, and storytelling. Let's build something amazing together.
+            <span class="lang-en">Crafting digital experiences through code, design, and storytelling. Let's build
+              something amazing together.</span>
+            <span class="lang-kh d-none">បង្កើតបទពិសោធន៍ឌីជីថលតាមរយៈការសរសេរកូដ ការរចនា និងការនិទានរឿង។
+              មកបង្កើតអ្វីដែលអស្ចារ្យជាមួយគ្នា។</span>
           </p>
         </div>
 
-        <!-- 2. Quick Links -->
         <div class="col-lg-4 text-center">
-          <h5 class="fw-bold mb-3 text-white">Quick Links</h5>
+          <h5 class="fw-bold mb-3 text-white">
+            <span class="lang-en">Quick Links</span>
+            <span class="lang-kh d-none">តំណភ្ជាប់រហ័ស</span>
+          </h5>
           <ul class="list-unstyled footer-links d-flex flex-column justify-content-center gap-2 mb-0">
-            <li><a href="#hero" class="footer-link">Home</a></li>
-            <li><a href="#about" class="footer-link">About</a></li>
-            <li><a href="#portfolio" class="footer-link">Portfolio</a></li>
-            <li><a href="#contact" class="footer-link">Contact</a></li>
+            <li><a href="#hero" class="footer-link"><span class="lang-en">Home</span><span
+                  class="lang-kh d-none">ទំព័រដើម</span></a></li>
+            <li><a href="#about" class="footer-link"><span class="lang-en">About</span><span
+                  class="lang-kh d-none">អំពីខ្ញុំ</span></a></li>
+            <li><a href="#portfolio" class="footer-link"><span class="lang-en">Portfolio</span><span
+                  class="lang-kh d-none">ស្នាដៃ</span></a></li>
+            <li><a href="#contact" class="footer-link"><span class="lang-en">Contact</span><span
+                  class="lang-kh d-none">ទំនាក់ទំនង</span></a></li>
           </ul>
         </div>
 
-        <!-- 3. Social & Subscribe -->
         <div class="col-lg-4 text-center text-lg-end">
-          <h5 class="fw-bold mb-3 text-white">Connect With Me</h5>
+          <h5 class="fw-bold mb-3 text-white">
+            <span class="lang-en">Connect With Me</span>
+            <span class="lang-kh d-none">តាមដានបណ្តាញសង្គម</span>
+          </h5>
           <div class="d-flex justify-content-center justify-content-lg-end gap-3 mb-3">
             <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
             <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
@@ -419,7 +582,9 @@
           </div>
           <div class="subscribe-form mt-3">
             <input type="email" class="form-control d-inline-block w-auto rounded-pill" placeholder="Email Address">
-            <button class="btn btn-primary rounded-pill ms-2">Subscribe</button>
+            <button class="btn btn-primary rounded-pill ms-2">
+              <span class="lang-en">Subscribe</span><span class="lang-kh d-none">ចុះឈ្មោះ</span>
+            </button>
           </div>
         </div>
 
@@ -430,8 +595,14 @@
       <div class="row">
         <div class="col-md-12 text-center">
           <p class="text-secondary mb-0 small">
-            © 2026 <span class="text-white fw-bold">REAKSMEY SAN</span>. All rights reserved.
-            Built with <i class="fas fa-heart text-danger mx-1"></i> and Bootstrap 5.
+            <span class="lang-en">
+              © 2026 <span class="text-white fw-bold">REAKSMEY SAN</span>. All rights reserved.
+              Built with <i class="fas fa-heart text-danger mx-1"></i> and Bootstrap 5.
+            </span>
+            <span class="lang-kh d-none">
+              © ២០២៦ <span class="text-white fw-bold">រស្មី សាន</span>។ រក្សាសិទ្ធិគ្រប់យ៉ាង។
+              រចនាដោយ <i class="fas fa-heart text-danger mx-1"></i> និង Bootstrap 5។
+            </span>
           </p>
         </div>
       </div>

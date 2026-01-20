@@ -1,6 +1,3 @@
-/* ===============================
-   VARIABLES & RESET
-================================ */
 :root {
   --primary-color: #4F46E5;
   --secondary-color: #10B981;
@@ -607,14 +604,33 @@ body {
     transform: translateY(0);
 }
 
-/* Portfolio Fade */
 @keyframes fadeIn {
     from { opacity: 0; transform: scale(0.95); }
     to { opacity: 1; transform: scale(1); }
 }
 
-/* Scrolled Navbar */
 .navbar.scrolled {
     background-color: var(--bs-body-bg) !important;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+#lang-toggle {
+    min-width: 90px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 30px;
+    border: 1px solid #3b82f6;
+}
+
+#lang-img {
+    display: inline-block;
+    vertical-align: middle;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+}
+
+#lang-toggle:hover {
+    transform: translateY(-2px);
 }
