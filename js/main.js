@@ -5,24 +5,24 @@ const initLanguageToggle = () => {
   const applyLanguage = (lang) => {
     const enElements = document.querySelectorAll('.lang-en');
     const khElements = document.querySelectorAll('.lang-kh');
-    const langLabel = document.getElementById('lang-label'); 
+    const langLabel = document.getElementById('lang-label');
     const langImg = document.getElementById('lang-img');
 
     if (lang === 'km') {
       enElements.forEach(el => el.classList.add('d-none'));
       khElements.forEach(el => el.classList.remove('d-none'));
-      
+
       if (langLabel) langLabel.innerText = 'EN';
       if (langImg) langImg.src = 'https://flagcdn.com/w40/us.png';
-      
+
       document.body.classList.add('khmer-font');
     } else {
       enElements.forEach(el => el.classList.remove('d-none'));
       khElements.forEach(el => el.classList.add('d-none'));
-      
+
       if (langLabel) langLabel.innerText = 'KH';
       if (langImg) langImg.src = 'https://flagcdn.com/w40/kh.png';
-      
+
       document.body.classList.remove('khmer-font');
     }
 
@@ -68,7 +68,7 @@ const initTypewriter = () => {
     }
 
     const currentPhrase = phrases[typingLang][phraseIndex];
-    
+
     let speed = isDeleting ? 50 : 100 + Math.random() * 50;
 
     textElement.textContent = currentPhrase.substring(0, charIndex);
@@ -90,7 +90,7 @@ const initTypewriter = () => {
 
     setTimeout(type, speed);
   };
-  
+
   type();
 };
 
@@ -127,15 +127,15 @@ const initPortfolio = () => {
 
     if (seeMoreBtn) {
       seeMoreBtn.style.display = (currentFilter === 'all' && visibleCount > initialCount) ? 'inline-block' : 'none';
-      
+
       if (showingAll) {
-        seeMoreBtn.innerHTML = currentLang === 'en' ? 
-            'See Less <i class="fas fa-arrow-up ms-2"></i>' : 
-            'បង្ហាញតិច <i class="fas fa-arrow-up ms-2"></i>';
+        seeMoreBtn.innerHTML = currentLang === 'en' ?
+          'See Less <i class="fas fa-arrow-up ms-2"></i>' :
+          'បង្ហាញតិច <i class="fas fa-arrow-up ms-2"></i>';
       } else {
-        seeMoreBtn.innerHTML = currentLang === 'en' ? 
-            'See More Projects <i class="fas fa-arrow-down ms-2"></i>' : 
-            'មើលគម្រោងបន្ថែមទៀត <i class="fas fa-arrow-down ms-2"></i>';
+        seeMoreBtn.innerHTML = currentLang === 'en' ?
+          'See More Projects <i class="fas fa-arrow-down ms-2"></i>' :
+          'មើលគម្រោងបន្ថែមទៀត <i class="fas fa-arrow-down ms-2"></i>';
       }
     }
   };
@@ -247,12 +247,18 @@ const initUIComponents = () => {
   }
 
   const contactForm = document.getElementById('contact-form');
+
   if (contactForm) {
     contactForm.addEventListener('submit', function (e) {
+      e.preventDefault(); // Stop page refresh
+
       const currentLang = localStorage.getItem("lang") || "en";
       const btn = this.querySelector('button[type="submit"]');
+
+      // 1. UI Loading State
       const loadingText = currentLang === 'en' ? 'Sending...' : 'កំពុងបញ្ជូន...';
-      
+      const originalBtnHTML = btn.innerHTML;
+
       btn.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span>${loadingText}`;
       btn.classList.add('disabled');
     });
@@ -264,7 +270,7 @@ const initUIComponents = () => {
 =============================== */
 document.addEventListener('DOMContentLoaded', () => {
   initDarkMode();
-  initLanguageToggle(); 
+  initLanguageToggle();
   initTypewriter();
   initPortfolio();
   initScrollEffects();
