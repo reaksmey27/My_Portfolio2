@@ -1,278 +1,461 @@
-/* ===============================
-   1. Language Toggle Logic
-=============================== */
-const initLanguageToggle = () => {
-  const applyLanguage = (lang) => {
-    const enElements = document.querySelectorAll('.lang-en');
-    const khElements = document.querySelectorAll('.lang-kh');
-    const langLabel = document.getElementById('lang-label');
-    const langImg = document.getElementById('lang-img');
-
-    if (lang === 'km') {
-      enElements.forEach(el => el.classList.add('d-none'));
-      khElements.forEach(el => el.classList.remove('d-none'));
-
-      if (langLabel) langLabel.innerText = 'EN';
-      if (langImg) langImg.src = 'https://flagcdn.com/w40/us.png';
-
-      document.body.classList.add('khmer-font');
-    } else {
-      enElements.forEach(el => el.classList.remove('d-none'));
-      khElements.forEach(el => el.classList.add('d-none'));
-
-      if (langLabel) langLabel.innerText = 'KH';
-      if (langImg) langImg.src = 'https://flagcdn.com/w40/kh.png';
-
-      document.body.classList.remove('khmer-font');
-    }
-
-    window.dispatchEvent(new Event('languageChanged'));
-  };
-
-  let currentLang = localStorage.getItem("lang") || "en";
-  applyLanguage(currentLang);
-
-  const langBtn = document.getElementById("lang-toggle");
-  if (langBtn) {
-    langBtn.addEventListener("click", () => {
-      currentLang = currentLang === "en" ? "km" : "en";
-      localStorage.setItem("lang", currentLang);
-      applyLanguage(currentLang);
-    });
-  }
+const STORAGE_KEYS = {
+  language: 'lang',
+  theme: 'theme',
 };
 
-/* ===============================
-   2. Typewriter Effect (Multi-Language)
-=============================== */
-const initTypewriter = () => {
-  const textElement = document.getElementById('typewriter');
-  if (!textElement) return;
-  const phrases = {
-    en: ["a Web Developer.", "a Designer.", "a YouTuber.", "a Vlogger."],
-    km: ["អ្នកអភិវឌ្ឍន៍វេបសាយ", "អ្នករចនា", "អ្នកផលិតវីដេអូយូធូប", "អ្នកថតវីដេអូ"]
+const DEFAULT_LANGUAGE = 'en';
+const DEFAULT_THEME = 'light';
+const LANGUAGE_CHANGED_EVENT = 'languageChanged';
+
+const FLAG_IMAGES = {
+  en: 'https://flagcdn.com/w40/kh.png',
+  km: 'https://flagcdn.com/w40/us.png',
+};
+
+const TYPEWRITER_PHRASES = {
+  en: ['a Web Developer.', 'a Designer.', 'a YouTuber.', 'a Vlogger.'],
+  km: ['អ្នកអភិវឌ្ឍន៍វេបសាយ', 'អ្នករចនា', 'អ្នកផលិតវីដេអូយូធូប', 'អ្នកថតវីដេអូ'],
+};
+
+const PORTFOLIO_LABELS = {
+  seeMore: {
+    en: 'See More Projects <i class="fas fa-arrow-down ms-2"></i>',
+    km: 'មើលគម្រោងបន្ថែមទៀត <i class="fas fa-arrow-down ms-2"></i>',
+  },
+  seeLess: {
+    en: 'See Less <i class="fas fa-arrow-up ms-2"></i>',
+    km: 'បង្ហាញតិច <i class="fas fa-arrow-up ms-2"></i>',
+  },
+};
+
+const CONTACT_MESSAGES = {
+  sending: {
+    en: 'Sending...',
+    km: 'កំពុងបញ្ជូន...',
+  },
+  success: {
+    en: 'Message sent successfully!',
+    km: 'បានផ្ញើសារជោគជ័យ!',
+  },
+  error: {
+    en: 'Failed to send message. Please try again.',
+    km: 'បរាជ័យក្នុងការផ្ញើសារ។ សូមព្យាយាមម្តងទៀត។',
+  },
+  unavailable: {
+    en: 'Contact service is temporarily unavailable.',
+    km: 'សេវាទំនាក់ទំនងមិនអាចប្រើបានជាបណ្តោះអាសន្ន។',
+  },
+};
+
+const EMAILJS_CONFIG = {
+  publicKey: 'NPUMdVXjs9YbxdD0i',
+  serviceId: 'service_qogw09w',
+  templateId: 'template_oatx0qr',
+};
+
+const getStoredValue = (key, fallback) => localStorage.getItem(key) || fallback;
+
+const getCurrentLanguage = () => getStoredValue(STORAGE_KEYS.language, DEFAULT_LANGUAGE);
+
+const getLocalizedText = (messages, language = getCurrentLanguage()) =>
+  messages[language] || messages.en;
+
+const throttle = (callback, delay = 100) => {
+  let lastRun = 0;
+  let timeoutId;
+
+  return (...args) => {
+    const now = Date.now();
+    const remaining = delay - (now - lastRun);
+
+    if (remaining <= 0) {
+      window.clearTimeout(timeoutId);
+      lastRun = now;
+      callback(...args);
+      return;
+    }
+
+    window.clearTimeout(timeoutId);
+    timeoutId = window.setTimeout(() => {
+      lastRun = Date.now();
+      callback(...args);
+    }, remaining);
+  };
+};
+
+const setActiveButton = (buttons, activeButton) => {
+  buttons.forEach((button) => {
+    const isActive = button === activeButton;
+    button.classList.toggle('active', isActive);
+    button.classList.toggle('btn-primary', isActive);
+    button.classList.toggle('btn-outline-primary', !isActive);
+  });
+};
+
+const createFilterSystem = ({
+  buttonSelector,
+  itemSelector,
+  seeMoreButtonId = null,
+  initialCount = null,
+  seeMoreLabels = null,
+}) => {
+  const buttons = Array.from(document.querySelectorAll(buttonSelector));
+  const items = Array.from(document.querySelectorAll(itemSelector));
+  const seeMoreButton = seeMoreButtonId ? document.getElementById(seeMoreButtonId) : null;
+
+  if (!buttons.length || !items.length) {
+    return;
+  }
+
+  let currentFilter = 'all';
+  let showingAll = false;
+
+  const updateSeeMoreButton = (matchedItemsCount) => {
+    if (!seeMoreButton || !initialCount || !seeMoreLabels) {
+      return;
+    }
+
+    const shouldShowButton = currentFilter === 'all' && matchedItemsCount > initialCount;
+    seeMoreButton.style.display = shouldShowButton ? 'inline-block' : 'none';
+
+    if (!shouldShowButton) {
+      return;
+    }
+
+    const labelKey = showingAll ? 'seeLess' : 'seeMore';
+    seeMoreButton.innerHTML = getLocalizedText(seeMoreLabels[labelKey]);
   };
 
+  const updateItems = () => {
+    const matchedItems = items.filter((item) => {
+      return currentFilter === 'all' || item.dataset.category === currentFilter;
+    });
+
+    items.forEach((item) => {
+      const isMatched = matchedItems.includes(item);
+      const visibleIndex = matchedItems.indexOf(item);
+      const isVisible =
+        isMatched && (!initialCount || showingAll || visibleIndex < initialCount);
+
+      item.style.display = isVisible ? 'block' : 'none';
+      item.style.animation = isVisible ? 'fadeIn 0.5s ease forwards' : '';
+    });
+
+    updateSeeMoreButton(matchedItems.length);
+  };
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      currentFilter = button.dataset.filter || 'all';
+      showingAll = false;
+      setActiveButton(buttons, button);
+      updateItems();
+    });
+  });
+
+  if (seeMoreButton) {
+    seeMoreButton.addEventListener('click', () => {
+      showingAll = !showingAll;
+      updateItems();
+    });
+  }
+
+  window.addEventListener(LANGUAGE_CHANGED_EVENT, updateItems);
+  updateItems();
+};
+
+const initLanguageToggle = () => {
+  const englishElements = document.querySelectorAll('.lang-en');
+  const khmerElements = document.querySelectorAll('.lang-kh');
+  const languageButton = document.getElementById('lang-toggle');
+  const languageLabel = document.getElementById('lang-label');
+  const languageImage = document.getElementById('lang-img');
+
+  const applyLanguage = (language) => {
+    const isKhmer = language === 'km';
+
+    englishElements.forEach((element) => {
+      element.classList.toggle('d-none', isKhmer);
+    });
+
+    khmerElements.forEach((element) => {
+      element.classList.toggle('d-none', !isKhmer);
+    });
+
+    if (languageLabel) {
+      languageLabel.textContent = isKhmer ? 'EN' : 'KH';
+    }
+
+    if (languageImage) {
+      languageImage.src = FLAG_IMAGES[language] || FLAG_IMAGES.en;
+    }
+
+    document.body.classList.toggle('khmer-font', isKhmer);
+    document.documentElement.lang = isKhmer ? 'km' : 'en';
+    window.dispatchEvent(new Event(LANGUAGE_CHANGED_EVENT));
+  };
+
+  let currentLanguage = getCurrentLanguage();
+  applyLanguage(currentLanguage);
+
+  if (!languageButton) {
+    return;
+  }
+
+  languageButton.addEventListener('click', () => {
+    currentLanguage = currentLanguage === 'en' ? 'km' : 'en';
+    localStorage.setItem(STORAGE_KEYS.language, currentLanguage);
+    applyLanguage(currentLanguage);
+  });
+};
+
+const initTypewriter = () => {
+  const textElement = document.getElementById('typewriter');
+
+  if (!textElement) {
+    return;
+  }
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  let language = getCurrentLanguage();
   let phraseIndex = 0;
   let charIndex = 0;
   let isDeleting = false;
-  let typingLang = localStorage.getItem("lang") || "en";
+  let timeoutId;
+
+  const resetState = () => {
+    language = getCurrentLanguage();
+    phraseIndex = 0;
+    charIndex = 0;
+    isDeleting = false;
+  };
+
+  const renderStaticText = () => {
+    textElement.textContent = TYPEWRITER_PHRASES[getCurrentLanguage()][0];
+  };
 
   const type = () => {
-    const currentLang = localStorage.getItem("lang") || "en";
-    if (currentLang !== typingLang) {
-      typingLang = currentLang;
-      phraseIndex = 0;
-      charIndex = 0;
-      isDeleting = false;
+    const currentLanguage = getCurrentLanguage();
+
+    if (currentLanguage !== language) {
+      resetState();
     }
 
-    const currentPhrase = phrases[typingLang][phraseIndex];
+    const currentPhrase = TYPEWRITER_PHRASES[language][phraseIndex];
+    textElement.textContent = currentPhrase.slice(0, charIndex);
 
-    let speed = isDeleting ? 50 : 100 + Math.random() * 50;
-
-    textElement.textContent = currentPhrase.substring(0, charIndex);
+    let speed = isDeleting ? 50 : 120;
 
     if (isDeleting) {
-      charIndex--;
+      charIndex -= 1;
     } else {
-      charIndex++;
+      charIndex += 1;
     }
 
-    if (!isDeleting && charIndex === currentPhrase.length + 1) {
-      speed = 2000;
+    if (!isDeleting && charIndex > currentPhrase.length) {
       isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
+      speed = 2000;
+    } else if (isDeleting && charIndex < 0) {
       isDeleting = false;
-      phraseIndex = (phraseIndex + 1) % phrases[typingLang].length;
+      charIndex = 0;
+      phraseIndex = (phraseIndex + 1) % TYPEWRITER_PHRASES[language].length;
       speed = 500;
     }
 
-    setTimeout(type, speed);
+    timeoutId = window.setTimeout(type, speed);
   };
+
+  if (prefersReducedMotion) {
+    renderStaticText();
+    window.addEventListener(LANGUAGE_CHANGED_EVENT, renderStaticText);
+    return;
+  }
+
+  window.addEventListener(LANGUAGE_CHANGED_EVENT, () => {
+    window.clearTimeout(timeoutId);
+    resetState();
+    type();
+  });
 
   type();
 };
 
-/* ===============================
-   3. Portfolio Filter + See More
-=============================== */
 const initPortfolio = () => {
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  const portfolioItems = document.querySelectorAll('.portfolio-item');
-  const seeMoreBtn = document.getElementById('see-more-btn');
-  const initialCount = 3;
-  let currentFilter = 'all';
-  let showingAll = false;
-
-  const updateGallery = () => {
-    let visibleCount = 0;
-    const currentLang = localStorage.getItem("lang") || "en";
-
-    portfolioItems.forEach(item => {
-      const isMatch = currentFilter === 'all' || item.dataset.category === currentFilter;
-
-      if (isMatch) {
-        if (showingAll || visibleCount < initialCount) {
-          item.style.display = 'block';
-          item.style.animation = 'fadeIn 0.5s ease forwards';
-        } else {
-          item.style.display = 'none';
-        }
-        visibleCount++;
-      } else {
-        item.style.display = 'none';
-      }
-    });
-
-    if (seeMoreBtn) {
-      seeMoreBtn.style.display = (currentFilter === 'all' && visibleCount > initialCount) ? 'inline-block' : 'none';
-
-      if (showingAll) {
-        seeMoreBtn.innerHTML = currentLang === 'en' ?
-          'See Less <i class="fas fa-arrow-up ms-2"></i>' :
-          'បង្ហាញតិច <i class="fas fa-arrow-up ms-2"></i>';
-      } else {
-        seeMoreBtn.innerHTML = currentLang === 'en' ?
-          'See More Projects <i class="fas fa-arrow-down ms-2"></i>' :
-          'មើលគម្រោងបន្ថែមទៀត <i class="fas fa-arrow-down ms-2"></i>';
-      }
-    }
-  };
-
-  filterButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterButtons.forEach(b => b.classList.remove('active', 'btn-primary'));
-      filterButtons.forEach(b => b.classList.add('btn-outline-primary'));
-      btn.classList.add('active', 'btn-primary');
-      btn.classList.remove('btn-outline-primary');
-
-      currentFilter = btn.getAttribute('data-filter');
-      showingAll = false;
-      updateGallery();
-    });
+  createFilterSystem({
+    buttonSelector: '.filter-btn',
+    itemSelector: '.portfolio-item',
+    seeMoreButtonId: 'see-more-btn',
+    initialCount: 3,
+    seeMoreLabels: PORTFOLIO_LABELS,
   });
-
-  if (seeMoreBtn) {
-    seeMoreBtn.addEventListener('click', () => {
-      showingAll = !showingAll;
-      updateGallery();
-    });
-  }
-
-  window.addEventListener('languageChanged', updateGallery);
-  updateGallery();
 };
 
-/* ===============================
-   4. Dark Mode Toggle
-=============================== */
-const initDarkMode = () => {
-  const themeBtn = document.getElementById('theme-toggle');
-  const themeIcon = document.getElementById('theme-icon');
-  if (!themeBtn) return;
+const initSkillsFilter = () => {
+  createFilterSystem({
+    buttonSelector: '.skills-filter-btn',
+    itemSelector: '.skill-item',
+  });
+};
 
-  const setTheme = (theme) => {
+const initDarkMode = () => {
+  const themeButton = document.getElementById('theme-toggle');
+  const themeIcon = document.getElementById('theme-icon');
+
+  const applyTheme = (theme) => {
     document.documentElement.setAttribute('data-bs-theme', theme);
+
     if (themeIcon) {
       themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
     }
-    localStorage.setItem('theme', theme);
+
+    localStorage.setItem(STORAGE_KEYS.theme, theme);
   };
 
-  themeBtn.addEventListener('click', () => {
-    const currentTheme = document.documentElement.getAttribute('data-bs-theme');
-    setTheme(currentTheme === 'light' ? 'dark' : 'light');
-  });
+  applyTheme(getStoredValue(STORAGE_KEYS.theme, DEFAULT_THEME));
 
-  setTheme(localStorage.getItem('theme') || 'light');
+  if (!themeButton) {
+    return;
+  }
+
+  themeButton.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+    const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    applyTheme(nextTheme);
+  });
 };
 
-/* ===============================
-   5. Scroll Effects & Active Nav
-=============================== */
 const initScrollEffects = () => {
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('show');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
-
-  document.querySelectorAll('section').forEach(section => {
-    section.classList.add('reveal-hidden');
-    revealObserver.observe(section);
-  });
-
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = Array.from(document.querySelectorAll('section'));
+  const sectionsWithIds = sections.filter((section) => section.id);
+  const navLinks = Array.from(document.querySelectorAll('.nav-link'));
   const navbar = document.querySelector('.navbar');
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) navbar.classList.add('scrolled');
-    else navbar.classList.remove('scrolled');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      (entries, currentObserver) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
 
-    let currentSection = '';
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      if (window.scrollY >= sectionTop - 120) {
-        currentSection = section.getAttribute('id');
-      }
+          entry.target.classList.add('show');
+          currentObserver.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    sections.forEach((section) => {
+      section.classList.add('reveal-hidden');
+      observer.observe(section);
     });
-
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href').includes(currentSection)) {
-        link.classList.add('active');
-      }
-    });
-  }, { passive: true });
-};
-
-/* ===============================
-   6. UI Components (Back to Top / Contact)
-=============================== */
-const initUIComponents = () => {
-  const backBtn = document.getElementById('back-to-top');
-  if (backBtn) {
-    window.addEventListener('scroll', () => {
-      backBtn.style.display = window.scrollY > 400 ? 'flex' : 'none';
-    }, { passive: true });
-
-    backBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+  } else {
+    sections.forEach((section) => section.classList.add('show'));
   }
 
+  const updateScrollState = throttle(() => {
+    if (navbar) {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    }
+
+    let currentSectionId = '';
+
+    sectionsWithIds.forEach((section) => {
+      if (window.scrollY >= section.offsetTop - 120) {
+        currentSectionId = section.id;
+      }
+    });
+
+    navLinks.forEach((link) => {
+      const href = link.getAttribute('href') || '';
+      link.classList.toggle('active', currentSectionId && href.includes(currentSectionId));
+    });
+  }, 100);
+
+  window.addEventListener('scroll', updateScrollState, { passive: true });
+  updateScrollState();
+};
+
+const initBackToTop = () => {
+  const backToTopButton = document.getElementById('back-to-top');
+
+  if (!backToTopButton) {
+    return;
+  }
+
+  const toggleButtonVisibility = throttle(() => {
+    backToTopButton.classList.toggle('show', window.scrollY > 400);
+  }, 100);
+
+  window.addEventListener('scroll', toggleButtonVisibility, { passive: true });
+  backToTopButton.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  toggleButtonVisibility();
+};
+
+const initContactForm = () => {
   const contactForm = document.getElementById('contact-form');
 
-  if (contactForm) {
-    contactForm.addEventListener('submit', function (e) {
-      e.preventDefault(); // Stop page refresh
-
-      const currentLang = localStorage.getItem("lang") || "en";
-      const btn = this.querySelector('button[type="submit"]');
-
-      // 1. UI Loading State
-      const loadingText = currentLang === 'en' ? 'Sending...' : 'កំពុងបញ្ជូន...';
-      const originalBtnHTML = btn.innerHTML;
-
-      btn.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span>${loadingText}`;
-      btn.classList.add('disabled');
-    });
+  if (!contactForm) {
+    return;
   }
+
+  const submitButton = contactForm.querySelector('button[type="submit"]');
+  const emailService = window.emailjs;
+
+  if (emailService?.init) {
+    emailService.init(EMAILJS_CONFIG.publicKey);
+  }
+
+  contactForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const language = getCurrentLanguage();
+
+    if (!submitButton) {
+      return;
+    }
+
+    if (!emailService?.sendForm) {
+      alert(getLocalizedText(CONTACT_MESSAGES.unavailable, language));
+      return;
+    }
+
+    const originalButtonContent = submitButton.innerHTML;
+    submitButton.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span>${getLocalizedText(
+      CONTACT_MESSAGES.sending,
+      language
+    )}`;
+    submitButton.disabled = true;
+
+    try {
+      await emailService.sendForm(
+        EMAILJS_CONFIG.serviceId,
+        EMAILJS_CONFIG.templateId,
+        contactForm
+      );
+      alert(getLocalizedText(CONTACT_MESSAGES.success, language));
+      contactForm.reset();
+    } catch (error) {
+      alert(getLocalizedText(CONTACT_MESSAGES.error, language));
+      console.error('EmailJS error:', error);
+    } finally {
+      submitButton.innerHTML = originalButtonContent;
+      submitButton.disabled = false;
+    }
+  });
 };
 
-/* ===============================
-   7. Initialize All Functions
-=============================== */
 document.addEventListener('DOMContentLoaded', () => {
   initDarkMode();
   initLanguageToggle();
   initTypewriter();
   initPortfolio();
+  initSkillsFilter();
   initScrollEffects();
-  initUIComponents();
+  initBackToTop();
+  initContactForm();
 });

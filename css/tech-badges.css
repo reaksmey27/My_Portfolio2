@@ -1,0 +1,119 @@
+/* Tech Stack Badges Styles */
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.tech-badge.express {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    color: white;
+    border-color: #3b82f6;
+}
+
+.tech-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border-radius: 20px;
+    border: 1px solid transparent;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.tech-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Specific Tech Colors */
+.tech-badge.html {
+    background: linear-gradient(135deg, #e44d26, #f16529);
+    color: white;
+    border-color: #e44d26;
+}
+
+.tech-badge.css {
+    background: linear-gradient(135deg, #264de4, #2965f1);
+    color: white;
+    border-color: #264de4;
+}
+
+.tech-badge.node {
+    background: linear-gradient(135deg, #339933, #4CAF50);
+    color: white;
+    border-color: #339933;
+}
+
+.tech-badge.facebook {
+    background: linear-gradient(135deg, #264de4, #2965f1);
+    color: white;
+    border-color: #264de4;
+}
+
+.tech-badge.js {
+    background: linear-gradient(135deg, #f7df1e, #fadc00);
+    color: #000;
+    border-color: #f7df1e;
+    font-weight: 600;
+}
+
+.tech-badge.react {
+    background: linear-gradient(135deg, #61dafb, #00d4ff);
+    color: #000;
+    border-color: #61dafb;
+    font-weight: 600;
+}
+
+.tech-badge.tailwind {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    color: white;
+    border-color: #3b82f6;
+}
+
+.tech-badge.vercel {
+    background: linear-gradient(135deg, #000, #333);
+    color: white;
+    border-color: #000;
+}
+
+.tech-badge.figma {
+    background: linear-gradient(135deg, #f24e1e, #ff6b35);
+    color: white;
+    border-color: #f24e1e;
+}
+
+/* Dark Mode Overrides */
+[data-bs-theme="dark"] .tech-badge {
+    box-shadow: 0 2px 12px rgba(255, 255, 255, 0.1);
+}
+
+[data-bs-theme="dark"] .tech-badge:hover {
+    box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .tech-stack {
+        gap: 4px;
+    }
+
+    .tech-badge {
+        font-size: 0.75rem;
+        padding: 3px 8px;
+    }
+}
+
+/* Project card specific adjustments */
+.project-card .tech-stack {
+    justify-content: flex-start;
+}
+
+.project-card .tech-badge {
+    font-size: 0.75rem;
+}

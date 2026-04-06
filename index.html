@@ -6,9 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title> REAKSMEY SAN | Portfolio</title>
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/tech-badges.css">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 </head>
@@ -216,33 +218,121 @@
         <hr class="mx-auto w-25 border-primary border-3 opacity-100">
       </div>
 
-      <div class="row g-4 justify-content-center">
+      <!-- Skills Filter Buttons -->
+      <div class="d-flex justify-content-center gap-2 mb-5 flex-wrap">
+        <button class="btn btn-primary rounded-pill skills-filter-btn active" data-filter="all">
+          <span class="lang-en">All</span>
+          <span class="lang-kh d-none">ទាំងអស់</span>
+        </button>
+        <button class="btn btn-outline-primary rounded-pill skills-filter-btn" data-filter="frontend">
+          <span class="lang-en">Frontend</span>
+          <span class="lang-kh d-none">ខាងមុខ</span>
+        </button>
+        <button class="btn btn-outline-primary rounded-pill skills-filter-btn" data-filter="backend">
+          <span class="lang-en">Backend</span>
+          <span class="lang-kh d-none">ខាងក្រោយ</span>
+        </button>
+        <button class="btn btn-outline-primary rounded-pill skills-filter-btn" data-filter="design">
+          <span class="lang-en">Design</span>
+          <span class="lang-kh d-none">រចនា</span>
+        </button>
+        <button class="btn btn-outline-primary rounded-pill skills-filter-btn" data-filter="other">
+          <span class="lang-en">Others</span>
+          <span class="lang-kh d-none">ផ្សេងៗ</span>
+        </button>
+      </div>
 
-        <div class="col-6 col-md-3 col-lg-2">
-          <div class="skill-card bg-body p-4 text-center shadow-sm rounded-4">
+      <div class="row g-4 justify-content-center" id="skills-grid">
+
+        <!-- Frontend Skills -->
+        <div class="col-6 col-md-3 col-lg-2 skill-item" data-category="frontend">
+          <div class="skill-card bg-body p-4 text-center shadow-sm rounded-4 h-100">
             <i class="fab fa-html5 fa-3x text-danger mb-3"></i>
-            <p class="mb-0 fw-bold text-body">HTML5</p>
+            <span class="lang-en d-block mb-0 fw-bold text-body">HTML5</span>
+            <span class="lang-kh d-none mb-0 fw-bold text-body">HTML5</span>
           </div>
         </div>
 
-        <div class="col-6 col-md-3 col-lg-2">
-          <div class="skill-card bg-body p-4 text-center shadow-sm rounded-4">
+        <div class="col-6 col-md-3 col-lg-2 skill-item" data-category="frontend">
+          <div class="skill-card bg-body p-4 text-center shadow-sm rounded-4 h-100">
             <i class="fab fa-css3-alt fa-3x text-primary mb-3"></i>
-            <p class="mb-0 fw-bold text-body">CSS3</p>
+            <span class="lang-en d-block mb-0 fw-bold text-body">CSS3</span>
+            <span class="lang-kh d-none mb-0 fw-bold text-body">CSS3</span>
           </div>
         </div>
 
-        <div class="col-6 col-md-3 col-lg-2">
-          <div class="skill-card bg-body p-4 text-center shadow-sm rounded-4">
+        <div class="col-6 col-md-3 col-lg-2 skill-item" data-category="frontend">
+          <div class="skill-card bg-body p-4 text-center shadow-sm rounded-4 h-100">
             <i class="fab fa-js fa-3x text-warning mb-3"></i>
-            <p class="mb-0 fw-bold text-body">JavaScript</p>
+            <span class="lang-en d-block mb-0 fw-bold text-body">JavaScript</span>
+            <span class="lang-kh d-none mb-0 fw-bold text-body">JavaScript</span>
           </div>
         </div>
 
-        <div class="col-6 col-md-3 col-lg-2">
-          <div class="skill-card bg-body p-4 text-center shadow-sm rounded-4">
-            <i class="fab fa-figma fa-3x text-danger mb-3"></i>
-            <p class="mb-0 fw-bold text-body">Figma</p>
+        <div class="col-6 col-md-3 col-lg-2 skill-item" data-category="frontend">
+          <div class="skill-card bg-body p-4 text-center shadow-sm rounded-4 h-100">
+            <i class="fab fa-react fa-3x text-info mb-3"></i>
+            <span class="lang-en d-block mb-0 fw-bold text-body">React</span>
+            <span class="lang-kh d-none mb-0 fw-bold text-body">React</span>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3 col-lg-2 skill-item" data-category="frontend">
+          <div class="skill-card bg-body p-4 text-center shadow-sm rounded-4 h-100">
+            <i class="fab fa-php fa-3x text-info mb-3"></i>
+            <span class="lang-en d-block mb-0 fw-bold text-body">PHP</span>
+            <span class="lang-kh d-none mb-0 fw-bold text-body">PHP</span>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3 col-lg-2 skill-item" data-category="frontend">
+          <div class="skill-card bg-body p-4 text-center shadow-sm rounded-4 h-100">
+            <i class="fab fa-bootstrap fa-3x text-primary mb-3"></i>
+            <span class="lang-en d-block mb-0 fw-bold text-body">Bootstrap</span>
+            <span class="lang-kh d-none mb-0 fw-bold text-body">Bootstrap</span>
+          </div>
+        </div>
+
+        <!-- Backend Skills -->
+        <div class="col-6 col-md-3 col-lg-2 skill-item" data-category="backend">
+          <div class="skill-card bg-body p-4 text-center shadow-sm rounded-4 h-100">
+            <i class="fab fa-node-js fa-3x text-success mb-3"></i>
+            <span class="lang-en d-block mb-0 fw-bold text-body">Node.js</span>
+            <span class="lang-kh d-none mb-0 fw-bold text-body">Node.js</span>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3 col-lg-2 skill-item" data-category="backend">
+          <div class="skill-card bg-body p-4 text-center shadow-sm rounded-4 h-100">
+            <i class="fab fa-python fa-3x text-warning mb-3"></i>
+            <span class="lang-en d-block mb-0 fw-bold text-body">Python</span>
+            <span class="lang-kh d-none mb-0 fw-bold text-body">Python</span>
+          </div>
+        </div>
+
+        <!-- Design Skills -->
+        <div class="col-6 col-md-3 col-lg-2 skill-item" data-category="design">
+          <div class="skill-card bg-body p-4 text-center shadow-sm rounded-4 h-100">
+            <i class="fab fa-figma fa-3x text-pink mb-3"></i>
+            <span class="lang-en d-block mb-0 fw-bold text-body">Figma</span>
+            <span class="lang-kh d-none mb-0 fw-bold text-body">Figma</span>
+          </div>
+        </div>
+
+        <!-- Other Skills -->
+        <div class="col-6 col-md-3 col-lg-2 skill-item" data-category="other">
+          <div class="skill-card bg-body p-4 text-center shadow-sm rounded-4 h-100">
+            <i class="fab fa-git-alt fa-3x text-orange mb-3"></i>
+            <span class="lang-en d-block mb-0 fw-bold text-body">Git</span>
+            <span class="lang-kh d-none mb-0 fw-bold text-body">Git</span>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3 col-lg-2 skill-item" data-category="other">
+          <div class="skill-card bg-body p-4 text-center shadow-sm rounded-4 h-100">
+            <i class="fab fa-youtube fa-3x text-danger mb-3"></i>
+            <span class="lang-en d-block mb-0 fw-bold text-body">YouTube</span>
+            <span class="lang-kh d-none mb-0 fw-bold text-body">YouTube</span>
           </div>
         </div>
 
@@ -284,6 +374,42 @@
         <div class="col-md-6 col-lg-4 portfolio-item" data-category="web">
           <div class="card h-100 border-0 shadow-sm overflow-hidden project-card">
             <div class="position-relative">
+              <img src="images/Pro7.png" class="card-img-top" alt="Project 1">
+              <div class="project-overlay d-flex align-items-center justify-content-center">
+                <a href="https://pnc-student-star.vercel.app/" target="_blank"
+                  class="btn btn-light rounded-circle mx-2"><i class="fas fa-link"></i></a>
+                <a href="https://github.com/sapiia/pnc_student_star" target="_blank"
+                  class="btn btn-light rounded-circle mx-2"><i class="fab fa-github"></i></a>
+              </div>
+            </div>
+            <div class="card-body p-4">
+              <span class="badge bg-primary-subtle text-primary mb-2">Web Development</span>
+              <div class="tech-stack mb-2">
+                <span class="tech-badge react"><i class="fab fa-react me-1"></i>React</span>
+                <span class="tech-badge node"><i class="fab fa-node-js me-1"></i>Node.js</span>
+                <span class="tech-badge express"><i class="fab fa-node-js me-1"></i>Express.js</span>
+                <span class="tech-badge tailwind"><i class="fab fa-css3-alt me-1"></i>Tailwind</span>
+                <span class="tech-badge js"><i class="fab fa-js me-1"></i>JS</span>
+              </div>
+              <div class="project-date mb-2">
+                <i class="fas fa-calendar-alt me-1 text-muted"></i>
+                <span class="lang-en">Mar - Apr 2025</span>
+                <span class="lang-kh d-none">មីនា - មេសា ២០២៥</span>
+              </div>
+              <h5 class="card-title fw-bold">PNC Student Star</h5>
+              <p class="card-text text-secondary small">
+                <span class="lang-en">PNC Student Star is a web-based student performance management system designed to
+                  help Education Officers and Managers manage student evaluations, meetings, and feedback.</span>
+                <span class="lang-kh d-none">PNC Student Star ជាប្រព័ន្ធគ្រប់គ្រងសមិទ្ធផលសិស្សផ្អែកលើវេប
+                  ដែលរចនាដើម្បីជួយមន្ត្រីសិក្សា និងអ្នកគ្រប់គ្រងគ្រប់គ្រងការវាយតម្លៃសិស្ស ការប្រជុំ និងមតិយោបល់។</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 portfolio-item" data-category="web">
+          <div class="card h-100 border-0 shadow-sm overflow-hidden project-card">
+            <div class="position-relative">
               <img src="images/Pro6.png" class="card-img-top" alt="Project 1">
               <div class="project-overlay d-flex align-items-center justify-content-center">
                 <a href="https://www.smey-dev.site/" target="_blank" class="btn btn-light rounded-circle mx-2"><i
@@ -294,10 +420,20 @@
             </div>
             <div class="card-body p-4">
               <span class="badge bg-primary-subtle text-primary mb-2">Web Development</span>
+              <div class="tech-stack mb-2">
+                <span class="tech-badge react"><i class="fab fa-react me-1"></i>React</span>
+                <span class="tech-badge tailwind"><i class="fab fa-css3-alt me-1"></i>Tailwind</span>
+                <span class="tech-badge js"><i class="fab fa-js me-1"></i>JS</span>
+              </div>
+              <div class="project-date mb-2">
+                <i class="fas fa-calendar-alt me-1 text-muted"></i>
+                <span class="lang-en">Feb - 2026</span>
+                <span class="lang-kh d-none">កុម្ភៈ - ២០២៦</span>
+              </div>
               <h5 class="card-title fw-bold">Movie-Website</h5>
               <p class="card-text text-secondary small">
-                <span class="lang-en">A front-end Movie-Website built with React, Tailwind, and JavaScript.</span>
-                <span class="lang-kh d-none">វេបសាយផ្នែកខាងមុខដែលបានបង្កើតឡើងដោយ React, Tailwind និង JavaScript។</span>
+                <span class="lang-en">A modern movie website with responsive design and interactive features.</span>
+                <span class="lang-kh d-none">វេបសាយភាពយន្តទំនើបមានការរចនាឆ្លើយតប និងមុខងារអន្តរកម្ម។</span>
               </p>
             </div>
           </div>
@@ -316,10 +452,20 @@
             </div>
             <div class="card-body p-4">
               <span class="badge bg-primary-subtle text-primary mb-2">Web Development</span>
+              <div class="tech-stack mb-2">
+                <span class="tech-badge html"><i class="fab fa-html5 me-1"></i>HTML</span>
+                <span class="tech-badge css"><i class="fab fa-css3-alt me-1"></i>CSS</span>
+                <span class="tech-badge js"><i class="fab fa-js me-1"></i>JS</span>
+              </div>
+              <div class="project-date mb-2">
+                <i class="fas fa-calendar-alt me-1 text-muted"></i>
+                <span class="lang-en">Dec - 2025</span>
+                <span class="lang-kh d-none">ធ្នូ - ២០២៥</span>
+              </div>
               <h5 class="card-title fw-bold">Quiz System Website</h5>
               <p class="card-text text-secondary small">
-                <span class="lang-en">A front-end quiz solution built with HTML, CSS, and JavaScript.</span>
-                <span class="lang-kh d-none">ប្រព័ន្ធប្រលងកម្រងសំណួរដែលបង្កើតឡើងដោយ HTML, CSS និង JavaScript។</span>
+                <span class="lang-en">Interactive quiz system with score tracking and responsive design.</span>
+                <span class="lang-kh d-none">ប្រព័ន្ធប្រលងសំណួរអន្តរកម្ម មានការគណនាពិន្ទុ និងរចនាឆ្លើយតប។</span>
               </p>
             </div>
           </div>
@@ -339,10 +485,18 @@
             </div>
             <div class="card-body p-4">
               <span class="badge bg-primary-subtle text-primary mb-2">Facebook</span>
+              <div class="tech-stack mb-2">
+                <span class="tech-badge facebook"><i class="fas fa-facebook me-1"></i>Facebook</span>
+              </div>
+              <div class="project-date mb-2">
+                <i class="fas fa-calendar-alt me-1 text-muted"></i>
+                <span class="lang-en">Dec - 2025</span>
+                <span class="lang-kh d-none">ធ្នូ - ២០២៥</span>
+              </div>
               <h5 class="card-title fw-bold">Tutorial Deploy Website</h5>
               <p class="card-text text-secondary small">
-                <span class="lang-en">How to deploy localhost website into browser by Vercel.</span>
-                <span class="lang-kh d-none">របៀបដាក់ឲ្យដំណើរការវេបសាយទៅកាន់អ៊ីនធឺណិតតាមរយៈ Vercel។</span>
+                <span class="lang-en">Step-by-step tutorial on deploying local websites to production.</span>
+                <span class="lang-kh d-none">មេរៀនជំហានៗពីរបៀបដាក់វេបសាយទៅកាន់ផលិតផល។</span>
               </p>
             </div>
           </div>
@@ -361,10 +515,19 @@
             </div>
             <div class="card-body p-4">
               <span class="badge bg-primary-subtle text-primary mb-2">Web Development</span>
+              <div class="tech-stack mb-2">
+                <span class="tech-badge html"><i class="fab fa-html5 me-1"></i>HTML</span>
+                <span class="tech-badge css"><i class="fab fa-css3-alt me-1"></i>CSS</span>
+              </div>
+              <div class="project-date mb-2">
+                <i class="fas fa-calendar-alt me-1 text-muted"></i>
+                <span class="lang-en">Sep - 2025</span>
+                <span class="lang-kh d-none">កញ្ញា - ២០២៥</span>
+              </div>
               <h5 class="card-title fw-bold">E-Commerce Website</h5>
               <p class="card-text text-secondary small">
-                <span class="lang-en">A front-end shopping solution built with HTML and CSS.</span>
-                <span class="lang-kh d-none">វេបសាយលក់ទំនិញអនឡាញដែលរចនាឡើងដោយ HTML និង CSS។</span>
+                <span class="lang-en">Responsive e-commerce landing page with product showcase.</span>
+                <span class="lang-kh d-none">ទំព័រដើមវេបសាយលក់ទំនិញឆ្លើយតប បង្ហាញផលិតផល។</span>
               </p>
             </div>
           </div>
@@ -383,10 +546,19 @@
             </div>
             <div class="card-body p-4">
               <span class="badge bg-primary-subtle text-primary mb-2">Web Development</span>
+              <div class="tech-stack mb-2">
+                <span class="tech-badge html"><i class="fab fa-html5 me-1"></i>HTML</span>
+                <span class="tech-badge css"><i class="fab fa-css3-alt me-1"></i>CSS</span>
+              </div>
+              <div class="project-date mb-2">
+                <i class="fas fa-calendar-alt me-1 text-muted"></i>
+                <span class="lang-en">Aug - 2025</span>
+                <span class="lang-kh d-none">សីហា - ២០២៥</span>
+              </div>
               <h5 class="card-title fw-bold">Portfolio Website</h5>
               <p class="card-text text-secondary small">
-                <span class="lang-en">A front-end Portfolio built with HTML and CSS.</span>
-                <span class="lang-kh d-none">វេបសាយបង្ហាញពីស្នាដៃផ្ទាល់ខ្លួនដែលរចនាដោយ HTML និង CSS។</span>
+                <span class="lang-en">Personal portfolio showcasing projects and skills.</span>
+                <span class="lang-kh d-none">វេបសាយបង្ហាញស្នាដៃ និងជំនាញផ្ទាល់ខ្លួន។</span>
               </p>
             </div>
           </div>
@@ -406,10 +578,18 @@
             </div>
             <div class="card-body p-4">
               <span class="badge bg-info-subtle text-info mb-2">UI/UX Design</span>
+              <div class="tech-stack mb-2">
+                <span class="tech-badge figma"><i class="fab fa-figma me-1"></i>Figma</span>
+              </div>
+              <div class="project-date mb-2">
+                <i class="fas fa-calendar-alt me-1 text-muted"></i>
+                <span class="lang-en">May - 2025</span>
+                <span class="lang-kh d-none">ឧសភា - ២០២៥</span>
+              </div>
               <h5 class="card-title fw-bold">Pet selling Application UI</h5>
-              <p class="card-text">
-                <span class="lang-en">Modern, user-friendly UI design for a pet selling app.</span>
-                <span class="lang-kh d-none">ការរចនាផ្ទៃកម្មវិធីទូរស័ព្ទសម្រាប់លក់សត្វចិញ្ចឹមដែលមានភាពទាន់សម័យ។</span>
+              <p class="card-text text-secondary small">
+                <span class="lang-en">Modern mobile app UI prototype for pet marketplace.</span>
+                <span class="lang-kh d-none">គំរូ UI កម្មវិធីទូរស័ព្ទទំនើបសម្រាប់ទីផ្សារលក់សត្វចិញ្ចឹម។</span>
               </p>
             </div>
           </div>
@@ -457,7 +637,7 @@
                   <span class="lang-en">Email Me</span>
                   <span class="lang-kh d-none">អ៊ីមែល</span>
                 </p>
-                <h6 class="mb-0">hello@reaksmey.com</h6>
+                <h6 class="mb-0">reaksmey.san@student.passerellesnumeriques.org</h6>
               </div>
             </div>
 
@@ -470,7 +650,7 @@
                   <span class="lang-en">Call Me</span>
                   <span class="lang-kh d-none">លេខទូរស័ព្ទ</span>
                 </p>
-                <h6 class="mb-0">+855 12 345 678</h6>
+                <h6 class="mb-0">+855 962 557 286</h6>
               </div>
             </div>
 
@@ -488,6 +668,15 @@
                   <span class="lang-kh d-none">រាជធានីភ្នំពេញ, ប្រទេសកម្ពុជា</span>
                 </h6>
               </div>
+            </div>
+
+            <div class="mt-4">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3909.587108717856!2d104.92820907602067!3d11.55637361899558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109fb3c7b25993b%3A0x72d3cc8d2d9e7b25!2sPhnom%20Penh!5e0!3m2!1sen!2skh!4v1729999999999!5m2!1sen!2skh"
+                width="100%" height="200"
+                style="border:0; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);" allowfullscreen=""
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
             </div>
 
             <div class="follow-journey mt-4 pt-3 border-top">
@@ -518,7 +707,7 @@
                   <span class="lang-en">Full Name</span>
                   <span class="lang-kh d-none">ឈ្មោះពេញ</span>
                 </label>
-                <input type="text" class="form-control bg-body text-body border-secondary py-2"
+                <input type="text" name="user_name" class="form-control bg-body text-body border-secondary py-2" \n
                   placeholder="Enter your name" required>
               </div>
 
@@ -527,7 +716,7 @@
                   <span class="lang-en">Email Address</span>
                   <span class="lang-kh d-none">អាសយដ្ឋានអ៊ីមែល</span>
                 </label>
-                <input type="email" class="form-control bg-body text-body border-secondary py-2"
+                <input type="email" name="user_email" class="form-control bg-body text-body border-secondary py-2" \n
                   placeholder="Enter your email" required>
               </div>
 
@@ -536,7 +725,7 @@
                   <span class="lang-en">Subject</span>
                   <span class="lang-kh d-none">ប្រធានបទ</span>
                 </label>
-                <input type="text" class="form-control bg-body text-body border-secondary py-2"
+                <input type="text" name="subject" class="form-control bg-body text-body border-secondary py-2" \n
                   placeholder="Enter your subject">
               </div>
 
@@ -545,7 +734,7 @@
                   <span class="lang-en">Message</span>
                   <span class="lang-kh d-none">សាររបស់អ្នក</span>
                 </label>
-                <textarea class="form-control bg-body text-body border-secondary py-2" rows="5"
+                <textarea name="message" class="form-control bg-body text-body border-secondary py-2" rows="5" \n
                   placeholder="Say something..." required></textarea>
               </div>
 
@@ -647,11 +836,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/main.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <script type="text/javascript">
-    (function () {
-      emailjs.init("VlX-xxxx-xxxxxxx");
-    })();
-  </script>
 
 </body>
 
